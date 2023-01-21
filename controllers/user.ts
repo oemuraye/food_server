@@ -2,14 +2,14 @@
 import { Request, Response, NextFunction } from "express";
 
 export async function signin(req: Request, res: Response, next: NextFunction) {
-  // const { email, password } = req.body;
+  const { email, password } = req.body;
 
-  // try {
-  // } catch (error) {
-  //   res.status(500).json({ message: "Something went wrong." });
-  // }
+  try {
+    
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
 
-  res.send("signin ");
 }
 
 export async function signup(req: Request, res: Response, next: NextFunction) {

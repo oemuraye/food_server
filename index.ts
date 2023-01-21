@@ -5,7 +5,6 @@ import cors from "cors";
 
 import userRoutes from "./routes/users"
 
-const port = process.env.PORT || 5000;
 const app : Application = express();
 dotevn.config();
 
@@ -22,6 +21,13 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/user", userRoutes);
 
 
-app.listen(port, () =>
-  console.log(`Server started on port http://localhost:${port}`)
-);
+const port = process.env.PORT || 5000;
+const connectionURL : any = process.env.MONGODB_URL;
+
+mongoose.set("strictQuery", false);
+mongoose
+  .connect(connectionURL)
+  .then(() =>
+    app.listen(port, () => console.log(`MongoDB connected and Server is up on port http://localhost:${port}`))
+  )
+  .catch((error) => console.log(error.message));
